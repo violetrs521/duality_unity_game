@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 854630032}
   - component: {fileID: 854630031}
   - component: {fileID: 854630030}
+  - component: {fileID: 854630034}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -154,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ec5c3b893a24dc594ef61b9abf74d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 10
 --- !u!50 &854630031
 Rigidbody2D:
   serializedVersion: 4
@@ -235,12 +236,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854630029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.79, y: 0.07, z: 0}
+  m_LocalPosition: {x: -0.02, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &854630034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854630029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ddbb2056bd204736b29897cb0358b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 2135491818}
 --- !u!1 &2135491816
 GameObject:
   m_ObjectHideFlags: 0
