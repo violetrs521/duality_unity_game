@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playerBoundaries : MonoBehaviour
+public class PlayerBoundaries : MonoBehaviour
 {
     public Camera MainCamera;
     private Vector2 screenBounds;
