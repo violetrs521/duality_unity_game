@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    // FixedUpdate is called once per physics tick
 
     void FixedUpdate()
     {       
