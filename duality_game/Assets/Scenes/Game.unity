@@ -351,10 +351,10 @@ GameObject:
   - component: {fileID: 854630032}
   - component: {fileID: 854630031}
   - component: {fileID: 854630030}
-  - component: {fileID: 854630034}
   - component: {fileID: 854630035}
   - component: {fileID: 854630036}
   - component: {fileID: 854630037}
+  - component: {fileID: 854630034}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 854630029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ddbb2056bd204736b29897cb0358b96, type: 3}
+  m_Script: {fileID: 11500000, guid: 390ddbacb275c457fa42fd92d4d14794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 2135491818}
