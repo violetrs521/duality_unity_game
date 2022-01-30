@@ -27,7 +27,7 @@ public class PlayerScoreDisplay : MonoBehaviour
     void Update()
     { 
        score = Time.time;
-       display.text = "Time: " + score;
+       display.text = "Time: " + (int)score;
 
        if((Input.GetKeyDown(KeyCode.Space))& display.color == Color.black){
             
