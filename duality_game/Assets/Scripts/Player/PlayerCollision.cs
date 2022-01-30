@@ -6,13 +6,15 @@ namespace Player
 {
     public class PlayerCollision : MonoBehaviour
     {
+        // Object HAS to be called Player
         private GameObject player;
-        private ColorSwitch script;
+        private SpriteRenderer playerSprite;
 
         void Start()
         {
             player = GameObject.Find("Player");
-            script = player.GetComponent<ColorSwitch>();
+            
+            playerSprite = player.GetComponent<SpriteRenderer>();
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -25,7 +27,8 @@ namespace Player
 
         private bool IsEnemy(Collider2D other)
         {
-            var playerColor = script.Sprite.color;
+            Debug.Log(playerSprite.color);
+            var playerColor = playerSprite.color;
             var otherColor = other.gameObject.GetComponent<SpriteRenderer>().color;
             return playerColor != otherColor;
         }
