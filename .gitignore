@@ -9,7 +9,7 @@
 /duality_game/[Bb]uilds/
 /duality_game/[Ll]ogs/
 /duality_game/[Mm]emoryCaptures/
-/duality_game/[Uu]serSettings/
+duality_game/UserSettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

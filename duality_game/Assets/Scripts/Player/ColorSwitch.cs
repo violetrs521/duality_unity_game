@@ -13,16 +13,14 @@ namespace Player
             gameObject.tag = "White";
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ReversePlayerColor()
         {
-            if ((Input.GetKeyDown(KeyCode.Space)) & Sprite.color == Color.black)
+            if (Sprite.color == Color.black)
             {
                 Sprite.color = Color.white;
                 gameObject.tag = "White";
             }
-
-            else if ((Input.GetKeyDown(KeyCode.Space)) & Sprite.color == Color.white)
+            else
             {
                 Sprite.color = Color.black;
                 gameObject.tag = "Black";

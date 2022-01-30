@@ -10,23 +10,12 @@ namespace Player
         void Start()
         {
             cam = GetComponent<Camera>();
-            cam.backgroundColor = new Color(0, 0, 0, 1);
+            cam.backgroundColor = Color.black;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void ReverseBackgroundColor()
         {
-
-            if ((Input.GetKeyDown(KeyCode.Space)) & cam.backgroundColor == Color.black)
-            {
-
-                cam.backgroundColor = new Color(1, 1, 1, 1);
-            }
-            else if ((Input.GetKeyDown(KeyCode.Space)) & cam.backgroundColor == Color.white)
-            {
-                cam.backgroundColor = new Color(0, 0, 0, 1);
-
-            }
+            cam.backgroundColor = cam.backgroundColor == Color.black ? Color.white : Color.black;
         }
     }
 }
