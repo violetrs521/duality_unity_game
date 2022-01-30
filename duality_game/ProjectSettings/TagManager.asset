@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - White
+  - Black
+  - Score
   layers:
   - Default
   - TransparentFX

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 16b59ce8422e2a3439ee72f95ce13da0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 0
+  MainCamera: {fileID: 4762764011540001838, guid: 080155dbd40f6bb4dbe91139ae0185a4, type: 3}
 --- !u!58 &1888906126899621854
 CircleCollider2D:
   m_ObjectHideFlags: 0

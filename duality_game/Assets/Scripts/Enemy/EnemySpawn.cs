@@ -12,13 +12,16 @@ public class EnemySpawn : MonoBehaviour
     private int spawnNum;
     private float spawnSpeed;
 
+    public Sprite whiteCircleBlackBorder;
+    public Sprite blackCircleWhiteBorder;
+
     public Camera MainCamera;
     private Vector2 screenBounds;
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnSpeed = 1f;
+        spawnSpeed = 0.5f;
 
         numSpawns = 8;
 
@@ -37,10 +40,12 @@ public class EnemySpawn : MonoBehaviour
         switch (Random.Range(0,2))
         {
             case 0:
-                    rend.color = Color.black;
+                    newEnemy.tag = "Black";
+                    rend.sprite = blackCircleWhiteBorder;
                     break;
             case 1: 
-                    rend.color = Color.white;
+                    newEnemy.tag = "White";
+                    rend.sprite = whiteCircleBlackBorder;
                     break;
         }
     }
