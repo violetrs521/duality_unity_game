@@ -42,6 +42,14 @@ public class EnemySpawn : MonoBehaviour
         spawnPos = new Vector3(randomX, randomY, 0f);
         newEnemy = Instantiate(enemy, spawnPos, Quaternion.identity);
         rend = newEnemy.GetComponent<SpriteRenderer>();
-        rend.color = new Color(Random.Range(0,2), Random.Range(0,2), Random.Range(0,2), 1f);
+        switch (Random.Range(0,2))
+        {
+            case 0:
+                    rend.color = Color.black;
+                    break;
+            case 1: 
+                    rend.color = Color.white;
+                    break;
+        }
     }
 }
