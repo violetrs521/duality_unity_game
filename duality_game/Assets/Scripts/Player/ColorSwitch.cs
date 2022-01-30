@@ -1,28 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorSwitch : MonoBehaviour
+namespace Player
 {
-    // Start is called before the first frame update
-    SpriteRenderer sprite;
-    
-    void Start()
+    public class ColorSwitch : MonoBehaviour
     {
-        sprite = GetComponent<SpriteRenderer>();
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        if((Input.GetKeyDown(KeyCode.Space))& sprite.color == Color.black)
+        // Start is called before the first frame update
+        public SpriteRenderer Sprite { get; set; }
+
+        void Start()
         {
-            sprite.color = Color.white;
+            Sprite = GetComponent<SpriteRenderer>();
         }
 
-        else if((Input.GetKeyDown(KeyCode.Space))& sprite.color == Color.white)
+        // Update is called once per frame
+        void Update()
         {
-            sprite.color = Color.black;
+            if ((Input.GetKeyDown(KeyCode.Space)) & Sprite.color == Color.black)
+            {
+                Sprite.color = Color.white;
+            }
+
+            else if ((Input.GetKeyDown(KeyCode.Space)) & Sprite.color == Color.white)
+            {
+                Sprite.color = Color.black;
+            }
         }
     }
 }

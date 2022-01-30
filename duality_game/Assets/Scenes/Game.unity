@@ -137,8 +137,10 @@ GameObject:
   - component: {fileID: 854630030}
   - component: {fileID: 854630034}
   - component: {fileID: 854630035}
+  - component: {fileID: 854630036}
+  - component: {fileID: 854630037}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,6 +270,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b1797718508421db8d657e00ead983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &854630036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854630029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0dd5ef04b454cdc9e83b1458eca87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &854630037
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854630029}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1664747490
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664747491}
   - component: {fileID: 1664747492}
+  - component: {fileID: 1664747493}
   m_Layer: 0
   m_Name: EnemySpawn
   m_TagString: Untagged
@@ -293,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664747490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.073436394, y: -0.14687777, z: 0}
+  m_LocalPosition: {x: -0.073436394, y: 7.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -313,6 +344,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5090509785419706411, guid: c85c166a74321554abacc69194668404, type: 3}
   MainCamera: {fileID: 2135491818}
+--- !u!58 &1664747493
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664747490}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &2135491816
 GameObject:
   m_ObjectHideFlags: 0

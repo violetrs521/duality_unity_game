@@ -1,18 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerCollision : MonoBehaviour
+namespace Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerCollision : MonoBehaviour
     {
-        
-    }
+        private GameObject player;
+        private ColorSwitch script;
 
-    // Update is called once per frame
-    void Update()
-    {
+        void Start()
+        {
+            player = GameObject.Find("Player");
+            script = player.GetComponent<ColorSwitch>();
+        }
         
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (IsEnemy(other))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+
+        private bool IsEnemy(Collider2D other)
+        {
+            var playerColor = script.Sprite.color;
+            var otherColor = other.gameObject.GetComponent<SpriteRenderer>().color;
+            return playerColor != otherColor;
+        }
     }
 }
