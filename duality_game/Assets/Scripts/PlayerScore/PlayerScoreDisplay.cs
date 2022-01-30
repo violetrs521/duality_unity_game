@@ -12,12 +12,14 @@ public class PlayerScoreDisplay : MonoBehaviour
     public TMP_Text display;
     private Vector3 screenBounds;
     public Camera MainCamera;
+    private int count;
 
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(-(Screen.width), -(Screen.height), 0f));
-        screenBounds.x += 245;
+        screenBounds.x += 800;
         screenBounds.y += 80;
         display.fontSize = 80f;
         display.transform.position = screenBounds;
@@ -26,9 +28,14 @@ public class PlayerScoreDisplay : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-       score = (int)Time.time;
-       display.text = "Score: " + score;
+    {
+        count++;
+        if (count % 30 == 0)
+        {
+            score += 1;
+        }
+        display.text = "Score: " + score;
+       
 
        if((Input.GetKeyDown(KeyCode.Space))& display.color == Color.black){
             

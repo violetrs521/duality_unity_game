@@ -21,7 +21,7 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnSpeed = 1f;
+        spawnSpeed = 0.5f;
 
         numSpawns = 8;
 
