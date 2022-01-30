@@ -8,7 +8,7 @@ using UnityEngine.Timeline;
 
 public class PlayerScoreDisplay : MonoBehaviour
 {
-    public float score = 0;
+    public int score = 0;
     public TMP_Text display;
     private Vector3 screenBounds;
     public Camera MainCamera;
@@ -17,17 +17,18 @@ public class PlayerScoreDisplay : MonoBehaviour
     void Start()
     {
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(-(Screen.width), -(Screen.height), 0f));
-        screenBounds.x += 145;
-        screenBounds.y += 30;
+        screenBounds.x += 245;
+        screenBounds.y += 80;
+        display.fontSize = 80f;
         display.transform.position = screenBounds;
-        display.text = "Time: " + score;
+        display.text = "Score: " + score;
     }
 
     // Update is called once per frame
     void Update()
     { 
-       score = Time.time;
-       display.text = "Time: " + score;
+       score = (int)Time.time;
+       display.text = "Score: " + score;
 
        if((Input.GetKeyDown(KeyCode.Space))& display.color == Color.black){
             

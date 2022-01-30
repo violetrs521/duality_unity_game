@@ -10,6 +10,7 @@ namespace Player
         void Start()
         {
             Sprite = GetComponent<SpriteRenderer>();
+            gameObject.tag = "White";
         }
 
         // Update is called once per frame
@@ -18,11 +19,13 @@ namespace Player
             if ((Input.GetKeyDown(KeyCode.Space)) & Sprite.color == Color.black)
             {
                 Sprite.color = Color.white;
+                gameObject.tag = "White";
             }
 
             else if ((Input.GetKeyDown(KeyCode.Space)) & Sprite.color == Color.white)
             {
                 Sprite.color = Color.black;
+                gameObject.tag = "Black";
             }
         }
     }
