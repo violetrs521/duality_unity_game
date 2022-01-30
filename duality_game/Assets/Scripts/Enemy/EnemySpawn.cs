@@ -12,6 +12,9 @@ public class EnemySpawn : MonoBehaviour
     private int spawnNum;
     private float spawnSpeed;
 
+    public Sprite whiteCircleBlackBorder;
+    public Sprite blackCircleWhiteBorder;
+
     public Camera MainCamera;
     private Vector2 screenBounds;
 
@@ -37,10 +40,12 @@ public class EnemySpawn : MonoBehaviour
         switch (Random.Range(0,2))
         {
             case 0:
-                    rend.color = Color.black;
+                    newEnemy.tag = "Black";
+                    rend.sprite = blackCircleWhiteBorder;
                     break;
             case 1: 
-                    rend.color = Color.white;
+                    newEnemy.tag = "White";
+                    rend.sprite = whiteCircleBlackBorder;
                     break;
         }
     }
