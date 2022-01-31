@@ -14,17 +14,12 @@ public class PlayerScoreDisplay : MonoBehaviour
     private Vector3 screenBounds;
     public Camera MainCamera;
     private int count;
+    public TMP_Text highScoreDisplay;
 
     // Start is called before the first frame update
     void Start()
     {
         Score = 0;
-        screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(-(Screen.width), -(Screen.height), 0f));
-        screenBounds.x += 800;
-        screenBounds.y += 80;
-        display.fontSize = 80f;
-        display.transform.position = screenBounds;
-        display.text = "Score: " + Score;
     }
 
     private void Update()
@@ -40,5 +35,11 @@ public class PlayerScoreDisplay : MonoBehaviour
     public void IncreasePoints(int amountToIncrease)
     {
         Score += amountToIncrease;
+    }
+
+    public void SetHighScore()
+    {
+        PersistantData.HighScore = Score > PersistantData.HighScore ? Score : PersistantData.HighScore;
+        highScoreDisplay.text = "High Score: " + PersistantData.HighScore;
     }
 }

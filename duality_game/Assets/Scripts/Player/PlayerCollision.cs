@@ -8,6 +8,7 @@ namespace Player
     {
         public GameObject mainCamera;
         public PlayerScoreDisplay scoreScript;
+        public DeathPanel deathPanelScript;
 
         private void Start()
         {
@@ -19,7 +20,9 @@ namespace Player
         {
             if (IsEnemy(other.gameObject))
             {
-                SceneManager.LoadScene(0);
+                deathPanelScript.Setup();
+                Destroy(gameObject);
+                scoreScript.SetHighScore();
             }
             else
             {
