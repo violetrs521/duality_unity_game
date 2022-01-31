@@ -23,6 +23,7 @@ namespace Player
             }
             else
             {
+                Destroy(other.gameObject);
                 scoreScript.IncreasePoints(1);
                 ReverseColors();
             }
