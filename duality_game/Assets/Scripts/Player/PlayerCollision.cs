@@ -6,31 +6,54 @@ namespace Player
 {
     public class PlayerCollision : MonoBehaviour
     {
-        // Object HAS to be called Player
-        private GameObject player;
-        private SpriteRenderer playerSprite;
+        public GameObject mainCamera;
+        public PlayerScoreDisplay scoreScript;
 
-        void Start()
+        private void Start()
         {
-            player = GameObject.Find("Player");
-            
-            playerSprite = player.GetComponent<SpriteRenderer>();
+            mainCamera = GameObject.FindWithTag("MainCamera");
+            scoreScript = GameObject.Find("Score").GetComponent<PlayerScoreDisplay>();
         }
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (IsEnemy(other))
+            if (IsEnemy(other.gameObject))
             {
                 SceneManager.LoadScene(0);
             }
+            else
+            {
+                scoreScript.IncreasePoints(1);
+                ReverseColors();
+            }
         }
 
-        private bool IsEnemy(Collider2D other)
+        private bool IsEnemy(GameObject other)
         {
-            Debug.Log(playerSprite.color);
-            var playerColor = playerSprite.color;
-            var otherColor = other.gameObject.GetComponent<SpriteRenderer>().color;
-            return playerColor != otherColor;
+            return !gameObject.CompareTag(other.tag);
+        }
+
+        private void ReverseColors()
+        {
+            // reverse player color and background color
+            ReversePlayerColor();
+            ReverseBackgroundColor();
+            ReverseScoreColor();
+        }
+
+        private void ReversePlayerColor()
+        {
+            gameObject.GetComponent<ColorSwitch>().ReversePlayerColor();
+        }
+
+        private void ReverseBackgroundColor()
+        {
+            mainCamera.GetComponent<CamColorSwitch>().ReverseBackgroundColor();
+        }
+        
+        private void ReverseScoreColor()
+        {
+            scoreScript.ReverseScoreColor();
         }
     }
 }
