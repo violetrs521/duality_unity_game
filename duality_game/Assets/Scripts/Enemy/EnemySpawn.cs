@@ -1,52 +1,89 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject enemy;
     private GameObject newEnemy;
-    public SpriteRenderer rend {get; set;}
-    private Vector3 spawnPos;
-    private int numSpawns;
-    private int spawnNum;
-    private float spawnSpeed;
+    private EnemyMovement newEnemyMovementScript;
+    public SpriteRenderer enemySpriteRenderer {get; set;}
+    private Vector3 enemySpawnPosition;
+    private int numberOfPotentialSpawns;
+    private int randomSpawnLocation;
+    private float baseEnemySpawnSpeed;
+    private float enemySpawnRate;
+    private float enemySpawnRateChange;
 
     public Sprite whiteCircleBlackBorder;
     public Sprite blackCircleWhiteBorder;
 
-    public Camera MainCamera;
+    private Camera MainCamera;
     private Vector2 screenBounds;
+
+    private PlayerScoreDisplay playerScoreScript;
+    
+    public int prevScoreAtDifficultyIncrease { get; set; }
+    public float enemySpeed { get; set; }
+    public float increaseEnemySpeedRate { get; set; }
+    public int increaseDifficultyOnLevel { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnSpeed = 0.5f;
+        MainCamera = Camera.main;
 
-        numSpawns = 8;
+        enemySpawnRate = 0.5f;
+        enemySpawnRateChange = 0.75f;
+
+        enemySpeed = 8f;
+        increaseEnemySpeedRate = 1.25f;
+        prevScoreAtDifficultyIncrease = -1;
+        increaseDifficultyOnLevel = 10;
+
+        numberOfPotentialSpawns = 8;
 
         screenBounds = MainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, MainCamera.transform.position.z));
 
-        InvokeRepeating("SpawnNewEnemy", 0f, spawnSpeed);
+        playerScoreScript = GameObject.Find("Score").GetComponent<PlayerScoreDisplay>();
+
+        repeatingEnemySpawn();
     }
 
     private void SpawnNewEnemy()
     {
-        spawnNum = Random.Range(1,numSpawns + 1);
-        spawnPos = new Vector3(screenBounds.x + 1, screenBounds.y - (screenBounds.y * ((float)spawnNum/(float)(numSpawns + 1)) * 2f), 0f);
+        randomSpawnLocation = Random.Range(1,numberOfPotentialSpawns + 1);
+        enemySpawnPosition = new Vector3(screenBounds.x + 1, 
+                                         screenBounds.y - (screenBounds.y * ((float)randomSpawnLocation/(float)(numberOfPotentialSpawns + 1)) * 2f),
+                                         0f);
 
-        newEnemy = Instantiate(enemy, spawnPos, Quaternion.identity);
-        rend = newEnemy.GetComponent<SpriteRenderer>();
+        newEnemy = Instantiate(enemy, enemySpawnPosition, Quaternion.identity);
+
+        newEnemyMovementScript = newEnemy.GetComponent<EnemyMovement>();
+        newEnemyMovementScript.prevScoreAtDifficultyIncrease = prevScoreAtDifficultyIncrease;
+
+        enemySpriteRenderer = newEnemy.GetComponent<SpriteRenderer>();
         switch (Random.Range(0,2))
         {
             case 0:
                     newEnemy.tag = "Black";
-                    rend.sprite = blackCircleWhiteBorder;
+                    enemySpriteRenderer.sprite = blackCircleWhiteBorder;
                     break;
             case 1: 
                     newEnemy.tag = "White";
-                    rend.sprite = whiteCircleBlackBorder;
+                    enemySpriteRenderer.sprite = whiteCircleBlackBorder;
                     break;
         }
+    }
+
+    private void repeatingEnemySpawn()
+    {
+        int score = playerScoreScript.Score;
+        if (score != 0 && score % increaseDifficultyOnLevel == 0 && score != prevScoreAtDifficultyIncrease)
+        {
+            prevScoreAtDifficultyIncrease = score;
+            enemySpawnRate *= enemySpawnRateChange;
+            enemySpeed *= increaseEnemySpeedRate;
+        }
+        SpawnNewEnemy();
+        Invoke("repeatingEnemySpawn",enemySpawnRate);
     }
 }
