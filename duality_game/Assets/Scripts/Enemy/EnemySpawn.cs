@@ -23,8 +23,10 @@ public class EnemySpawn : MonoBehaviour
     
     public int prevScoreAtDifficultyIncrease { get; set; }
     public float enemySpeed { get; set; }
-    public float increaseEnemySpeedRate { get; set; }
+    public float maxEnemySpeed { get; set; }
     public int increaseDifficultyOnLevel { get; set; }
+
+    private const float E = 2.7182818284590451f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +36,8 @@ public class EnemySpawn : MonoBehaviour
         enemySpawnRate = 0.5f;
         enemySpawnRateChange = 0.75f;
 
-        enemySpeed = 8f;
-        increaseEnemySpeedRate = 1.25f;
+        maxEnemySpeed = 15f;
+        enemySpeed = 5f;
         prevScoreAtDifficultyIncrease = -1;
         increaseDifficultyOnLevel = 10;
 
@@ -81,7 +83,8 @@ public class EnemySpawn : MonoBehaviour
         {
             prevScoreAtDifficultyIncrease = score;
             enemySpawnRate *= enemySpawnRateChange;
-            enemySpeed *= increaseEnemySpeedRate;
+            //plug -(e^(3-.15x)-15) into graphing calculator to see speed increase curve
+            enemySpeed = -(Mathf.Pow(E,3f-0.15f*enemySpeed) - maxEnemySpeed);
         }
         SpawnNewEnemy();
         Invoke("repeatingEnemySpawn",enemySpawnRate);

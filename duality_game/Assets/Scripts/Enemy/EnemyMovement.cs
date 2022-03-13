@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private float enemySpeed;
-    private float increaseEnemySpeedRate;
+    private float maxEnemySpeed;
 
     private Rigidbody2D enemyRigidBody;
     private float newEnemyXPosition;
@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     public int prevScoreAtDifficultyIncrease { get; set; }
     private int score;
     private int increaseDifficultyOnLevel;
+    private const float E = 2.7182818284590451f;
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +37,9 @@ public class EnemyMovement : MonoBehaviour
         enemySpawnScript = GameObject.Find("EnemySpawn").GetComponent<EnemySpawn>();
 
         enemySpeed = enemySpawnScript.enemySpeed;
-        increaseEnemySpeedRate = enemySpawnScript.increaseEnemySpeedRate;
         prevScoreAtDifficultyIncrease = enemySpawnScript.prevScoreAtDifficultyIncrease;
         increaseDifficultyOnLevel = enemySpawnScript.increaseDifficultyOnLevel;
+        maxEnemySpeed = enemySpawnScript.maxEnemySpeed;
     }
 
     // Update is called once per frame
@@ -48,7 +49,7 @@ public class EnemyMovement : MonoBehaviour
         if (score != 0 & score % increaseDifficultyOnLevel == 0 & score != prevScoreAtDifficultyIncrease)
         {
             prevScoreAtDifficultyIncrease = score;
-            enemySpeed *= increaseEnemySpeedRate;
+            enemySpeed = -(Mathf.Pow(E,3f-0.15f*enemySpeed) - maxEnemySpeed);
         }
         newEnemyXPosition = transform.position.x - enemySpeed * Time.deltaTime;
         if (newEnemyXPosition <= despawnZone.x)
